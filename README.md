@@ -15,9 +15,20 @@ This dataset was created via a multi-job workflow. The first involved contributo
 
 This dataset contains both the audio utterances and corresponding transcription. 
 
+# Getting Started
+
+## creating virtual env
+python3 -m venv env
+## activating virtual env
+source env/bin/activate
+## Install Requirements/Dependencies
+python3 -m pip install -r requirements.txt
+## Initial Run
+python3 main.py
+
 
    
-  # [Demo](https://medical-symptoms-classifier.herokuapp.com/)
+  # [Demo](http://localhost:5000/)
   
 This web app uses machine learning to classify medical text according to the category of the ailment being described.
 
@@ -25,7 +36,7 @@ The model can classify 25 ailments ( Emotional pain, Hair falling out, Head hurt
 
   Notebook: https://www.kaggle.com/gabbygab/medical-symptoms-text-classification-web-app
   
-  Live demo: https://medical-symptoms-classifier.herokuapp.com/
+  Live demo: http://localhost/5000/diagnosis/
   
   ![](https://i.imgur.com/SJPzebD.png)
 
