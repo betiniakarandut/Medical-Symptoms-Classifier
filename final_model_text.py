@@ -6,7 +6,9 @@ import warnings
 import pickle
 import string
 import spacy
-import nltk 
+import nltk
+# nltk.download('punkt')
+# nltk.download('wordnet')
 import re
 
 
@@ -48,8 +50,8 @@ def clean_txt(docs):
     return combined_text
 
 def classification_metrics(model, y_test, y_pred):
-    print(f"Training Accuracy Score: {model.score(X_train, y_train) * 100:.1f}%")
-    print(f"Validation Accuracy Score: {model.score(X_test, y_test) * 100:.1f}%")
+    # print(f"Training Accuracy Score: {model.score(X_train, y_train) * 100:.1f}%")
+    # print(f"Validation Accuracy Score: {model.score(X_test, y_test) * 100:.1f}%")
     
     conf_matrix = confusion_matrix(y_test, y_pred)
     fig,ax = plt.subplots(figsize=(8,6))
@@ -60,7 +62,7 @@ def classification_metrics(model, y_test, y_pred):
     plt.ylabel('Actual label', fontsize=15)
     plt.xlabel('Predicted label', fontsize=15)
     plt.show()
-    print(classification_report(y_test, y_pred))
+    # print(classification_report(y_test, y_pred))
 
 def save_model(model,filename):
     pickle.dump(model, open(filename, 'wb'))
@@ -83,15 +85,15 @@ X = vec.fit_transform(X).toarray()
 prompt = df_text["prompt"].unique()
 prompt_dict = {value:index for index, value in enumerate(prompt)}
 results = df_text["prompt"].map(prompt_dict)
-print(f'\n{prompt_dict}\n')
+# print(f'\n{prompt_dict}\n')
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, results, test_size=0.2, random_state=0)
 
 text_clf = BaggingClassifier(n_estimators=10)
 model = text_clf.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-classification_metrics(model, y_test, y_pred)
+# y_pred = model.predict(X_test)
+# classification_metrics(model, y_test, y_pred)
 
 save_model(model, 'model.pkl')
 
@@ -103,61 +105,53 @@ def detectAilment(text):
 
     transform_vect =vec.transform(pred).toarray()
     if model.predict(transform_vect) == 0:
-        print("Emotional pain")
+        return("Emotional pain")
     elif model.predict(transform_vect) == 1:
-        print("Hair falling out")
+        return("Hair falling out")
     elif model.predict(transform_vect) == 2:
-        print("Heart hurts")
+        return("Heart hurts")
     elif model.predict(transform_vect) == 3:
-        print("Infected wound")
+        return("Infected wound")
     elif model.predict(transform_vect) == 4:
-        print("Foot achne")
+        return("Foot achne")
     elif model.predict(transform_vect) == 5:
-        print("Shoulder pain")
+        return("Shoulder pain")
     elif model.predict(transform_vect) == 6:
-        print("Injury from sports")
+        return("Injury from sports")
     elif model.predict(transform_vect) == 7:
-        print("Skin issue")
+        return("Skin issue")
     elif model.predict(transform_vect) == 8:
-        print("Stomach ache")
+        return("Stomach ache")
     elif model.predict(transform_vect) == 9:
-        print("Knee pain")
+        return("Knee pain")
     elif model.predict(transform_vect) == 10:
-        print("Joint pain")
+        return("Joint pain")
     elif model.predict(transform_vect) == 11:
-        print("Hard to breath")
+        return("Hard to breath")
     elif model.predict(transform_vect) == 12:
-        print("Head ache")
+        return("Head ache")
     elif model.predict(transform_vect) == 13:
-        print("Body feels weak")
+        return("Body feels weak")
     elif model.predict(transform_vect) == 14:
-        print("Feeling Dizzy")
+        return("Feeling Dizzy")
     elif model.predict(transform_vect) == 15:
-        print("Back pain")
+        return("Back pain")
     elif model.predict(transform_vect) == 16:
-        print("Open wound")
+        return("Open wound")
     elif model.predict(transform_vect) == 17:
-        print("Internal pain")
+        return("Internal pain")
     elif model.predict(transform_vect) == 18:
-        print("Blurry vision")
+        return("Blurry vision")
     elif model.predict(transform_vect) == 19:
-        print("Acne")
+        return("Acne")
     elif model.predict(transform_vect) == 20:
-        print("Muscle pain")
+        return("Muscle pain")
     elif model.predict(transform_vect) == 21:
-        print("Neck pain")
+        return("Neck pain")
     elif model.predict(transform_vect) == 22:
-        print("Cough")
+        return("Cough")
     elif model.predict(transform_vect) == 23:
-        print("Ear ache")
+        return("Ear ache")
         
     else:
-        print("Feeling cold")
-
-while True:
-    value = input('How are you feeling right now?: ')
-    try:
-        detectAilment(value)
-    except ValueError:
-       print ('Invalid')
-       continue
+        return("Feeling cold")
