@@ -24,7 +24,7 @@ def hello_school():
     return render_template('diagnosis.html', result=None)
 
 
-@app.route('/diagnosis', strict_slashes=False, methods=['POST','GET'])
+@app.route('/diagnosis', strict_slashes=False, methods=['POST', 'GET'])
 def int_display_template():
     """ param num:
                     must be a string value.
@@ -32,7 +32,7 @@ def int_display_template():
                     Interprets sting Values on a
                     templates file
     """
-    symptom  = request.form['symptom']
+    symptom = request.form['symptom']
     diagnosis = detectAilment(symptom)
     # print("You are suffering from :", diagnosis)
     return render_template('diagnosis.html', result=diagnosis)
